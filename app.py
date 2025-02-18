@@ -24,10 +24,10 @@ from langgraph.graph import MessagesState, END
 class State(MessagesState):
     next: str 
     
-azure_endpoint = os.environ['ESIAPOC_AZURE_ENDPOINT']
-openai_api_key = os.environ['ESIAPOC_OPENAI_API_KEY']
-openai_deployment_name = os.environ['ESIAPOC_GPT_DEPLOYMENT_NAME']
-openai_api_version = os.environ['ESIAPOC_OPENAI_API_VERSION']
+azure_endpoint = st.secrets(azure_endpoint)
+openai_api_key = st.secrets(openai_api_key)
+openai_deployment_name = st.secrets(openai_deployment_name)
+openai_api_version =st.secrets(openai_api_version)
 
 llm = AzureChatOpenAI(
     deployment_name=openai_deployment_name, 
@@ -40,10 +40,10 @@ llm = AzureChatOpenAI(
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 
-service_endpoint = os.environ["AZURE_SEARCH_SERVICE_ENDPOINT"]
-index_name = os.environ["AZURE_SEARCH_INDEX_NAME"]
-key = os.environ["AZURE_SEARCH_API_KEY"]
-search_service_name = os.environ["AZURE_SEARCH_SERVICE_NAME"]
+service_endpoint = st.secrets(service_endpoint)
+index_name = st.secrets(index_name)
+key = st.secrets(key)
+search_service_name = st.secrets(search_service_name)
 search_client = SearchClient(service_endpoint, index_name, AzureKeyCredential(key))
 
 def esia_split_results(question) -> str:
