@@ -62,6 +62,13 @@ def esia_split_results(question) -> str:
 
     response = requests.post(url, headers=headers, verify=False, json={
         "search": question,
+        "vectorQueries": [
+            {
+            "kind": "text",
+            "text": question,
+            "fields": "text_vector"
+            }
+        ],
         "semanticConfiguration":"guinea-esia-2-semantic-configuration",
         "queryType":"semantic",
         "queryLanguage":"en-US",
