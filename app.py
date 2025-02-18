@@ -137,11 +137,11 @@ builder.add_node("researcher", research_node)
 
 graph = builder.compile()
 
-st.set_page_config(page_title="LangChain: Chat with search", page_icon="🦜")
-st.title("🦜 LangChain: Chat with search")
+st.set_page_config(page_title="Guinea ESIA Assistant", page_icon="🔎")
+st.title("🔎 Guinea ESIA Assistant")
 
 # DIsplay the search results in the sidebar
-st.sidebar.write("Search results:")
+st.sidebar.write("SEARCH RESULTS")
 
 if user_question := st.chat_input(placeholder="What is the Simandou project?"):
     st.chat_message("user").write(user_question)
