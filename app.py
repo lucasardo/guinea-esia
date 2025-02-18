@@ -24,8 +24,10 @@ from langgraph.graph import MessagesState, END
 class State(MessagesState):
     next: str 
 
-os.environ["LANGSMITH_API_KEY"] = "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"
-os.environ["LANGSMITH_TRACING"] = "true"
+LANGSMITH_TRACING=True
+LANGSMITH_ENDPOINT="https://api.smith.langchain.com"
+LANGSMITH_API_KEY="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"
+LANGSMITH_PROJECT="ESIA Agent"
 
 azure_endpoint = st.secrets["azure_endpoint"]
 openai_api_key = st.secrets["openai_api_key"]
