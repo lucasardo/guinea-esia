@@ -46,7 +46,7 @@ from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
 
 service_endpoint = st.secrets["service_endpoint"]
-index_name = st.secrets["index_name"]
+index_name = "guinea-esia-assistant"
 key = st.secrets["key"]
 search_service_name = st.secrets["search_service_name"]
 search_client = SearchClient(service_endpoint, index_name, AzureKeyCredential(key))
@@ -54,7 +54,7 @@ search_client = SearchClient(service_endpoint, index_name, AzureKeyCredential(ke
 def esia_split_results(question) -> str:
     """Searches ESIA documents in a vector store."""
     
-    url = f"https://esg-semantic-ranker.search.windows.net/indexes/guinea-esia-2/docs/search?api-version=2024-11-01-preview"
+    url = "https://esg-semantic-ranker.search.windows.net/indexes/guinea-esia-assistant/docs/search?api-version=2024-11-01-preview"
     headers = {
         "Content-Type": "application/json",
         "api-key": key
@@ -69,7 +69,7 @@ def esia_split_results(question) -> str:
             "fields": "text_vector"
             }
         ],
-        "semanticConfiguration":"guinea-esia-2-semantic-configuration",
+        "semanticConfiguration":"guinea-esia-assistant-semantic-configuration",
         "queryType":"semantic",
         "queryLanguage":"en-US",
         "select": "title,chunk",
@@ -84,7 +84,7 @@ def esia_split_results(question) -> str:
 def esia_search(question) -> str:
     """Searches ESIA documents in a vector store."""
     
-    url = f"https://esg-semantic-ranker.search.windows.net/indexes/guinea-esia-2/docs/search?api-version=2024-11-01-preview"
+    url = "https://esg-semantic-ranker.search.windows.net/indexes/guinea-esia-assistant/docs/search?api-version=2024-11-01-preview"
     headers = {
         "Content-Type": "application/json",
         "api-key": key
@@ -99,7 +99,7 @@ def esia_search(question) -> str:
             "fields": "text_vector"
             }
         ],
-        "semanticConfiguration":"guinea-esia-2-semantic-configuration",
+        "semanticConfiguration":"guinea-esia-assistant-semantic-configuration",
         "queryType":"semantic",
         "queryLanguage":"en-US",
         "select": "title,chunk",
